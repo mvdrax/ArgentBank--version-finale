@@ -1,0 +1,167 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3000
+basePath: /api/v1
+schemes:
+  - http
+
+paths:        
+  /user/accountInfos:
+    get:
+      tags:
+        - User Transactions
+      summary: "Get all transactions for the current month"
+      description: "Retrieves a list of all transactions for the current month."
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        401:
+          description: "Unauthorized - Missing or invalid API key"
+      security:
+        - Bearer : []
+
+  /accountInfos/{transactionId}: 
+    get:
+      tags:
+        - User Transactions
+      summary: "Get details of a transaction"
+      description: "Retrieves additional details of a transaction by specifying its ID."
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "Transaction ID"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Transaction"
+        401:
+          description: "Unauthorized - Missing or invalid API key"
+        404:
+          description: "Transaction not found"
+      security:
+        - Bearer: []
+        
+    post:
+      tags:
+        - User Transactions
+      summary: "Add additional information to a transaction"
+      description: "Adds additional information to a transaction."
+      
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          required: true
+          type: "string"
+          description: "Transaction ID"
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        201:
+          description: "Successful operation - Created"
+        401:
+          description: "Unauthorized - Missing or invalid API key"
+      security:
+        - Bearer : []
+        
+    put:
+      tags:
+        - User Transactions
+      summary: "Modify details of a transaction"
+      description: "Modifies the additional details of a transaction by specifying its ID."
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "Transaction ID"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          description: "New transaction details"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        200:
+          description: "Successful operation"
+        401:
+          description: "Unauthorized - Missing or invalid API key"
+        404:
+          description: "Transaction not found"
+      security:
+        - Bearer: []
+
+    delete:
+      tags:
+        - User Transactions
+      summary: "Delete a transaction"
+      description: "Deletes a transaction by specifying its ID."
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "Transaction ID"
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: "Successful operation - No content"
+        401:
+          description: "Unauthorized - Missing or invalid API key"
+        404:
+          description: "Transaction not found"
+      security:
+        - Bearer: []
+        
+
+
+
+       
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  User:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+      firstName:
+        type: string
+        description: user first name
+      lastName:
+        type: string
+        description: user last name
+      userName:
+        type: string
+        description: user public name
+        
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      date:
+        type: "string"
+        format: "date"
+      amount:
+        type: "number"
+      description:
+        type: "string"

@@ -1,0 +1,40 @@
+.form2 {
+    display: flex;
+    justify-content: center;
+    width: 15%;
+  }
+
+.disabledNamesInput {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  gap: 5px;
+  margin-left: -40px;
+}
+
+.formBtns  {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+ 
+.formSmtBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+}
+
+.smtBtns {
+    width: 30px;
+}
+
+
+@media (max-width: 420px) 
+{
+    .form2 {
+        display: flex;
+    justify-content: center;
+    width: 50%;
+    }
+}
