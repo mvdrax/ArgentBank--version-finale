@@ -135,25 +135,7 @@ securityDefinitions:
     name: Authorization
     in: header
 definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-      userName:
-        type: string
-        description: user public name
-        
-  Transaction:
+   Transaction:
     type: "object"
     properties:
       id:
