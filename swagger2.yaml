@@ -107,8 +107,8 @@ paths:
     delete:
       tags:
         - User Transactions
-      summary: "Delete a transaction"
-      description: "Deletes a transaction by specifying its ID."
+      summary: "Delete informations about a specific transaction"
+      description: "Deletes transaction informations by specifying its ID."
       parameters:
         - name: "transactionId"
           in: "path"
