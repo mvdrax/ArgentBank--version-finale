@@ -4,7 +4,7 @@ info:
   description: Contains all available API endpoints in this codebase
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
-host: localhost:3000
+host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
@@ -28,7 +28,7 @@ paths:
       security:
         - Bearer : []
 
-  /accountInfos/{transactionId}: 
+  /user/accountInfos/{transactionId}: 
     get:
       tags:
         - User Transactions
@@ -44,7 +44,7 @@ paths:
         200:
           description: "Successful operation"
           schema:
-            $ref: "#/definitions/Transaction"
+            $ref: "#/definitions/Informations"
         401:
           description: "Unauthorized - Missing or invalid API key"
         404:
@@ -68,7 +68,7 @@ paths:
           name: "body"
           required: true
           schema:
-            $ref: "#/definitions/Transaction"
+            $ref: "#/definitions/InformationsToChange"
       responses:
         201:
           description: "Successful operation - Created"
@@ -93,7 +93,7 @@ paths:
           description: "New transaction details"
           required: true
           schema:
-            $ref: "#/definitions/Transaction"
+            $ref: "#/definitions/InformationsToChange"
       responses:
         200:
           description: "Successful operation"
@@ -115,6 +115,12 @@ paths:
           description: "Transaction ID"
           required: true
           type: "string"
+        - name: "body"
+          in: "body"
+          description: "New transaction details"
+          required: true
+          schema:
+            $ref: "#/definitions/InformationsToChange"
       responses:
         204:
           description: "Successful operation - No content"
@@ -147,3 +153,23 @@ definitions:
         type: "number"
       description:
         type: "string"
+    
+   Informations:
+    type: "object"
+    properties:
+      date:
+        type: "string"
+        format: "date"
+      amount:
+        type: "number"
+      description:
+        type: "string"
+        
+   InformationsToChange:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+        
+        
+        
