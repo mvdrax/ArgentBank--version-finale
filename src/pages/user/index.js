@@ -18,6 +18,7 @@ const Profile = () => {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
 
@@ -80,16 +81,14 @@ const RedirectOnRefresh = () => {
 RedirectOnRefresh ();
 
 
+useEffect(() => {
+  if (!user.token) {
+    navigate("/index.html");
+  }
+}, [user, navigate]);
 
 
 
-
-
-
-
-
-
- 
 
 
   return (
